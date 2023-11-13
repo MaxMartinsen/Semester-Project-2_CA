@@ -1,7 +1,7 @@
 {
   "name": "semester-project-2_ca",
   "version": "0.0.1",
-  "description": "",
+  "description": "WILL is a dynamic, auction website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
