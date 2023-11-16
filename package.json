@@ -19,5 +19,8 @@
     "tailwindcss": "^3.3.5",
     "vite": "^4.4.5",
     "vite-plugin-inspect": "^0.7.42"
+  },
+  "dependencies": {
+    "flowbite": "^2.1.1"
   }
 }
