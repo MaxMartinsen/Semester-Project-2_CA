@@ -1,6 +1,6 @@
 {
   "name": "semester-project-2_ca",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WILL is a dynamic, auction website",
   "main": "index.js",
   "type": "module",
