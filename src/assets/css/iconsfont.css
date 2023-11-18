@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?ruc3k');
-  src:  url('../fonts/icomoon.eot?ruc3k#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?ruc3k') format('truetype'),
-    url('../fonts/icomoon.woff?ruc3k') format('woff'),
-    url('../fonts/icomoon.svg?ruc3k#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?5sse0l');
+  src:  url('../fonts/icomoon.eot?5sse0l#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?5sse0l') format('truetype'),
+    url('../fonts/icomoon.woff?5sse0l') format('woff'),
+    url('../fonts/icomoon.svg?5sse0l#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,23 +25,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-setting:before {
+.icon-menu:before {
+  content: "\e900";
+}
+.icon-next:before {
+  content: "\e901";
+}
+.icon-search:before {
   content: "\e902";
 }
-.icon-user:before {
+.icon-cancel:before {
   content: "\e903";
 }
-.icon-cancel:before {
+.icon-setting:before {
   content: "\e904";
 }
-.icon-car:before {
+.icon-user:before {
   content: "\e905";
 }
-.icon-amphora:before {
+.icon-sedan:before {
   content: "\e906";
 }
-.icon-wholesale:before {
+.icon-amphora:before {
   content: "\e907";
+}
+.icon-wholesaler:before {
+  content: "\e908";
 }
 .icon-info:before {
   content: "\e909";
@@ -61,21 +70,27 @@
 .icon-crypto:before {
   content: "\e90e";
 }
-.icon-ticket:before {
+.icon-logo:before {
   content: "\e90f";
 }
-.icon-app:before {
+.icon-favicon:before {
   content: "\e910";
 }
-.icon-motorbike:before {
+.icon-ticket:before {
   content: "\e911";
 }
-.icon-boat:before {
+.icon-app:before {
   content: "\e912";
 }
-.icon-couch:before {
+.icon-motorbike:before {
   content: "\e913";
 }
-.icon-home:before {
+.icon-boat:before {
   content: "\e914";
+}
+.icon-couch:before {
+  content: "\e915";
+}
+.icon-home:before {
+  content: "\e917";
 }
