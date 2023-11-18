@@ -9,7 +9,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "prettier": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "keywords": [],
   "author": "Max Martinsen <MaxMar68543@stud.noroff.no>",
