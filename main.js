@@ -1,3 +1,3 @@
 import './src/index.css';
 import 'flowbite';
-import './src/assets/css/iconsfont.css';
+import './src/css/iconsfont.css';
