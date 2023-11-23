@@ -4,6 +4,6 @@
 
 @layer components {
     .tab-trigger.active {
-        @apply text-red-500 border-b-red-500 border-b-2 font-medium pb-0;
+        @apply text-red-500 border-b-red-500 border-b-2 pb-0;
     }
 }
