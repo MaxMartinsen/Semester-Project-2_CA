@@ -33,7 +33,7 @@ function createListingCard(listing) {
   // Create card item
   const cardItem = document.createElement('div');
   cardItem.className =
-    'group shadow-md shadow-gray-400 rounded-xl overflow-hidden cursor-pointer';
+    'flex group overflow-hidden cursor-pointer flex-col p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700';
 
   // Create and append image div
   cardItem.appendChild(createImageDiv(listing.media[0]));
@@ -45,36 +45,26 @@ function createListingCard(listing) {
 }
 
 function createImageDiv(imageUrl) {
-  // Create image div
-  const imageDiv = document.createElement('div');
-  imageDiv.className = 'rounded-xl overflow-hidden w-full h-full';
-  // Create and append image
   const image = document.createElement('img');
   image.src = imageUrl || '/image.jpg';
   image.alt = 'Listing image';
-  image.className = 'w-full h-full object-cover';
-  imageDiv.appendChild(image);
+  image.className =
+    'object-cover w-full rounded-t-lg h-96 md:w-96 lg:w-56 xl:w-72 md:rounded-none md:rounded-s-lg';
 
-  return imageDiv;
+  return image;
 }
 
 function createContentDiv(listing) {
   const contentDiv = document.createElement('div');
-  contentDiv.className = 'p-4';
+  contentDiv.className =
+    'flex flex-auto flex-col pl-0 md:pl-12 lg:pl-4 leading-normal';
 
-  contentDiv.appendChild(createTagSpan(listing.tags));
   contentDiv.appendChild(createTitleH3(listing.title));
+  contentDiv.appendChild(createDescriptionP(listing.description));
+  contentDiv.appendChild(createTagSpan(listing.tags));
   contentDiv.appendChild(createTimeLeftDiv(listing.endsAt));
 
   return contentDiv;
-}
-
-function createTagSpan(tags) {
-  const tagSpan = document.createElement('span');
-  tagSpan.className =
-    'text-gray-600 py-2 px-4 font-medium bg-gray-200 rounded-xl';
-  tagSpan.textContent = tags.join(', ');
-  return tagSpan;
 }
 
 function createTitleH3(title) {
@@ -84,9 +74,32 @@ function createTitleH3(title) {
   return titleH3;
 }
 
+function createDescriptionP(description) {
+  const descriptionP = document.createElement('p');
+  descriptionP.id = 'card-description';
+  descriptionP.className =
+    'mt-2 flex-auto font-normal text-gray-700 dark:text-gray-400';
+  descriptionP.textContent = description;
+  return descriptionP;
+}
+
+function createTagSpan(tags) {
+  const tagSpan = document.createElement('span');
+
+  if (tags && tags.length > 0) {
+    tagSpan.className =
+      'mt-4 w-fit text-gray-600 py-2 px-4 text-center font-medium bg-gray-200 rounded-xl';
+    tagSpan.innerHTML = tags.map((tag) => `#${tag}&nbsp;`).join(' ');
+  } else {
+    tagSpan.style.display = 'none';
+  }
+
+  return tagSpan;
+}
+
 function createTimeLeftDiv(timeString) {
   const div = document.createElement('div');
-  div.className = 'flex justify-between items-center mt-2';
+  div.className = 'flex items-center lg:justify-between mt-4 text-gray-600';
 
   const p = document.createElement('p');
   p.className = 'font-semibold text-lg uppercase';
@@ -95,7 +108,7 @@ function createTimeLeftDiv(timeString) {
 
   const span = document.createElement('span');
   span.className =
-    'text-lg rounded-xl py-1 px-2 border-red-400 bg-red-100 border-2 group-hover:bg-red-400 group-hover:text-white';
+    'text-lg ml-10 lg:ml-0 rounded-xl py-1 px-2 border-red-400 bg-red-100 border-2 group-hover:bg-red-400 group-hover:text-white';
   span.textContent = formatTimeLeft(timeString);
   div.appendChild(span);
 

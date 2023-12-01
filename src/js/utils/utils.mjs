@@ -1,6 +1,4 @@
 // Utils Module
-export { showSuccessModal } from './successModal.mjs';
-export { hideSuccessModal } from './successModal.mjs';
 
 export { updateUserInfo } from './updateUserInfo.mjs';
 

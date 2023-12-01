@@ -7,6 +7,7 @@ import { handleSignOut } from './src/js/form/auth/handleSignOut.mjs';
 import { updateSettingsModal, checkLoginState } from './src/js/utils/utils.mjs';
 import { handleUpdateAvatar } from './src/js/form/profile/handleUpdateAvatar.mjs';
 import { loadListings } from './src/js/listing/listing.mjs';
+import { initializeTagify } from './src/js/tagify/initializeTagify.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
   handleRegistration();
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleSignOut();
   handleUpdateAvatar();
   loadListings();
+  initializeTagify();
 
   const settingsModal = document.getElementById('settings-modal');
   if (settingsModal) {
@@ -34,9 +36,3 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('unload', () => observer.disconnect());
   }
 });
-
-/* import { toggleTabs } from './src/js/components/components.mjs'; */
-
-/* document.addEventListener('DOMContentLoaded', () => {
-  toggleTabs('.tab-trigger', '.tab-content');
-}); */

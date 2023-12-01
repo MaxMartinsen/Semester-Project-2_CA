@@ -1,4 +1,3 @@
-// src/js/request/get.mjs
 /**
  * GET request to the specified URL.
  * @param {string} url - The URL to send the GET request to.
