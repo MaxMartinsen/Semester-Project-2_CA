@@ -8,11 +8,15 @@ import {
 export function handleCreateListing() {
   const form = document.getElementById('listing-modal');
   const submitButton = document.getElementById('listing-submit');
+  const progressButton = document.getElementById('listing-progress');
+  const successButton = document.getElementById('listing-success');
 
-  if (!form || !submitButton) return;
+  if (!form || !submitButton || !progressButton || !successButton) return;
 
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
+    submitButton.classList.add('hidden');
+    progressButton.classList.remove('hidden');
     const accessToken = localStorage.getItem('accessToken');
     const title = document.getElementById('listing-title').value;
     const during = document.getElementById('listing-during').value;
@@ -38,8 +42,21 @@ export function handleCreateListing() {
         accessToken
       );
       console.log('Listing created:', response);
+
+      // Change to success button and close modal after a delay
+      setTimeout(() => {
+        progressButton.classList.add('hidden');
+        successButton.classList.remove('hidden');
+
+        // Close modal after additional delay
+        setTimeout(() => {
+          document.querySelector('[data-modal-hide="listing-modal"]').click();
+        }, 1500);
+      }, 2000);
     } catch (error) {
       console.error('Error creating listing:', error);
+      progressButton.classList.add('hidden');
+      submitButton.classList.remove('hidden');
     }
   });
 }

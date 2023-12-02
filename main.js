@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleSignOut();
   handleUpdateAvatar();
   loadListings();
+  setInterval(loadListings, 30000);
   initializeTagify();
   handleCreateListing();
 

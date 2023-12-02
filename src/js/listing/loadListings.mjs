@@ -1,30 +1,38 @@
 import { get } from '../request/get.mjs';
 import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
 
+let currentListings = [];
+
 export async function loadListings() {
   try {
-    // Fetch only active listings and sort by created date in descending order
-    const url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true&sort=created&sortOrder=desc&limit=11&offset=0`;
+    const url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true&sort=created&sortOrder=desc&limit=12&offset=0`;
     const listings = await get(url);
+    const newListingIds = listings.map((listing) => listing.id);
+    const currentListingIds = currentListings.map((listing) => listing.id);
 
-    const cardContent = document.getElementById('card-content');
-    cardContent.innerHTML = '';
-
-    listings.forEach((listing) => {
-      const now = new Date();
-      const endTime = new Date(listing.endsAt);
-      const thirtyDaysFromNow = new Date(
-        now.getTime() + 30 * 24 * 60 * 60 * 1000
-      );
-
-      if (endTime > now && endTime <= thirtyDaysFromNow) {
-        const cardItem = createListingCard(listing);
-        cardContent.appendChild(cardItem);
-      }
-    });
+    if (!arraysEqual(newListingIds, currentListingIds)) {
+      updateListingsDOM(listings);
+      currentListings = listings; // Update current listings
+    }
   } catch (error) {
     console.error('Failed to load listings:', error);
   }
+}
+
+function updateListingsDOM(listings) {
+  const cardContent = document.getElementById('card-content');
+  cardContent.innerHTML = '';
+  listings.forEach((listing) => {
+    const cardItem = createListingCard(listing);
+    cardContent.appendChild(cardItem);
+  });
+}
+
+function arraysEqual(arr1, arr2) {
+  return (
+    arr1.length === arr2.length &&
+    arr1.every((value, index) => value === arr2[index])
+  );
 }
 
 function createListingCard(listing) {
