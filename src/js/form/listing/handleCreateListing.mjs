@@ -21,7 +21,6 @@ export function handleCreateListing() {
     const tagifyTags = document.getElementById('listing-tags').value;
     const tags = JSON.parse(tagifyTags).map((tagObject) => tagObject.value);
 
-    // Convert 'during' value to endsAt date
     const endsAt = calculateEndDate(during);
 
     const data = {
@@ -39,10 +38,8 @@ export function handleCreateListing() {
         accessToken
       );
       console.log('Listing created:', response);
-      // Handle successful creation, e.g., close modal, display a success message
     } catch (error) {
       console.error('Error creating listing:', error);
-      // Handle error, e.g., display an error message
     }
   });
 }
@@ -59,6 +56,6 @@ function calculateEndDate(during) {
     case '30d':
       return new Date(now.setDate(now.getDate() + 30)).toISOString();
     default:
-      return new Date(now.setDate(now.getDate() + 7)).toISOString(); // Default to one week
+      return new Date(now.setDate(now.getDate() + 7)).toISOString();
   }
 }
