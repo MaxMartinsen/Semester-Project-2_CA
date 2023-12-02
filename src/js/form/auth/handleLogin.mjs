@@ -1,7 +1,11 @@
 // src/js/form/auth/handleLogin.mjs
 import { post } from '../../request/post.mjs';
 import { API_BASE_URL, API_VERSION, LOGIN_ENDPOINT } from '../../api/url.mjs';
-import { updateUserInfo, clearLoginForm } from '../../utils/utils.mjs';
+import {
+  updateUserInfo,
+  clearLoginForm,
+  updateSettingsModal,
+} from '../../utils/utils.mjs';
 
 export function handleLogin() {
   const loginForm = document.getElementById('login-form');
@@ -35,6 +39,9 @@ export function handleLogin() {
           localStorage.setItem('email', response.email);
           localStorage.setItem('name', response.name);
 
+          updateUserInfo();
+          updateSettingsModal();
+
           closeButton.click();
 
           if (authButtons) {
@@ -47,7 +54,6 @@ export function handleLogin() {
               userAvatar.alt = response.name;
             }
           }
-          updateUserInfo();
 
           console.log('Login response stored in localStorage');
         } else {
