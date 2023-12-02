@@ -44,7 +44,7 @@ function createListingCard(listing) {
 
 function createImageDiv(imageUrl) {
   const image = document.createElement('img');
-  image.src = imageUrl || 'public/image.jpg';
+  image.src = imageUrl || '/public/image.jpg';
   image.alt = 'Listing image';
   image.className =
     'object-cover w-full rounded-t-lg h-96 md:w-96 lg:w-56 xl:w-72 md:rounded-none md:rounded-s-lg';
