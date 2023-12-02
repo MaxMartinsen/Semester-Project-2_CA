@@ -1,0 +1,65 @@
+import { post } from '../../request/post.mjs';
+import {
+  API_BASE_URL,
+  API_VERSION,
+  LISTINGS_ENDPOINT,
+} from '../../api/url.mjs';
+
+export function handleCreateListing() {
+  const form = document.getElementById('listing-modal');
+  const submitButton = document.getElementById('listing-submit');
+
+  if (!form || !submitButton) return;
+
+  submitButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById('listing-title').value;
+    const during = document.getElementById('listing-during').value;
+    const image = document.getElementById('listing-image').value;
+    const description = document.getElementById('listing-description').value;
+    const tags = document
+      .getElementById('listing-tags')
+      .value.split(',')
+      .map((tag) => tag.trim());
+
+    // Convert 'during' value to endsAt date
+    const endsAt = calculateEndDate(during);
+
+    const data = {
+      title,
+      description,
+      tags,
+      media: [image],
+      endsAt,
+    };
+
+    try {
+      const response = await post(
+        `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}`,
+        data
+      );
+      console.log('Listing created:', response);
+      // Handle successful creation, e.g., close modal, display a success message
+    } catch (error) {
+      console.error('Error creating listing:', error);
+      // Handle error, e.g., display an error message
+    }
+  });
+}
+
+function calculateEndDate(during) {
+  const now = new Date();
+  switch (during) {
+    case '3d':
+      return new Date(now.setDate(now.getDate() + 3)).toISOString();
+    case '5d':
+      return new Date(now.setDate(now.getDate() + 5)).toISOString();
+    case '7d':
+      return new Date(now.setDate(now.getDate() + 7)).toISOString();
+    case '30d':
+      return new Date(now.setDate(now.getDate() + 30)).toISOString();
+    default:
+      return new Date(now.setDate(now.getDate() + 7)).toISOString(); // Default to one week
+  }
+}

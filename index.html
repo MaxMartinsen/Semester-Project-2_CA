@@ -679,10 +679,10 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                   >
                     <option selected="">During</option>
-                    <option value="3d">3 Days</option>
-                    <option value="5d">5 Days</option>
-                    <option value="7d">Week</option>
-                    <option value="30d">Mounth</option>
+                    <option id="listing-3d" value="3d">3 Days</option>
+                    <option id="listing-7d" value="5d">5 Days</option>
+                    <option id="listing-10d" value="7d">Week</option>
+                    <option id="listing-30d" value="30d">Month</option>
                   </select>
                 </div>
                 <div class="col-span-2">
@@ -706,7 +706,7 @@
                     >Product Description</label
                   >
                   <textarea
-                    id="description"
+                    id="listing-description"
                     rows="4"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                     placeholder="Write product description here"
@@ -728,12 +728,18 @@
                   />
                 </div>
               </div>
+            </form>
+            <!-- Modal footer -->
+            <div
+              class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
+            >
               <button
                 id="listing-submit"
                 type="submit"
                 class="text-gray-600 hover:text-white inline-flex items-center border-2 border-red-400 bg-red-100 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 <svg
+                  id="listing-submit-svg"
                   class="me-1 -ms-1 w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
@@ -747,7 +753,14 @@
                 </svg>
                 Start auction
               </button>
-            </form>
+              <button
+                data-modal-hide="listing-modal"
+                type="button"
+                class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+              >
+                Decline
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { updateSettingsModal, checkLoginState } from './src/js/utils/utils.mjs';
 import { handleUpdateAvatar } from './src/js/form/profile/handleUpdateAvatar.mjs';
 import { loadListings } from './src/js/listing/listing.mjs';
 import { initializeTagify } from './src/js/tagify/initializeTagify.mjs';
+import { handleCreateListing } from './src/js/form/listing/handleCreateListing.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
   handleRegistration();
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleUpdateAvatar();
   loadListings();
   initializeTagify();
+  handleCreateListing();
 
   const settingsModal = document.getElementById('settings-modal');
   if (settingsModal) {
