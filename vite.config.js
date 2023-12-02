@@ -1,6 +1,6 @@
 import Inspect from 'vite-plugin-inspect';
 
 export default {
-  base: '/Semester-Project-2_CA/',
+  base: '/',
   plugins: [Inspect()],
 };
