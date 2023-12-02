@@ -3,9 +3,12 @@ import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
 
 export async function loadListings() {
   try {
-    const listings = await fetchListings();
+    // Fetch only active listings and sort by created date in descending order
+    const url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true&sort=created&sortOrder=desc&limit=11&offset=0`;
+    const listings = await get(url);
+
     const cardContent = document.getElementById('card-content');
-    cardContent.innerHTML = ''; // Clear any existing content
+    cardContent.innerHTML = '';
 
     listings.forEach((listing) => {
       const now = new Date();
@@ -22,11 +25,6 @@ export async function loadListings() {
   } catch (error) {
     console.error('Failed to load listings:', error);
   }
-}
-
-async function fetchListings() {
-  const url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}`;
-  return await get(url);
 }
 
 function createListingCard(listing) {
