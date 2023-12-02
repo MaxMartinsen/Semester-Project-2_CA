@@ -13,15 +13,13 @@ export function handleCreateListing() {
 
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
-
+    const accessToken = localStorage.getItem('accessToken');
     const title = document.getElementById('listing-title').value;
     const during = document.getElementById('listing-during').value;
     const image = document.getElementById('listing-image').value;
     const description = document.getElementById('listing-description').value;
-    const tags = document
-      .getElementById('listing-tags')
-      .value.split(',')
-      .map((tag) => tag.trim());
+    const tagifyTags = document.getElementById('listing-tags').value;
+    const tags = JSON.parse(tagifyTags).map((tagObject) => tagObject.value);
 
     // Convert 'during' value to endsAt date
     const endsAt = calculateEndDate(during);
@@ -37,7 +35,8 @@ export function handleCreateListing() {
     try {
       const response = await post(
         `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}`,
-        data
+        data,
+        accessToken
       );
       console.log('Listing created:', response);
       // Handle successful creation, e.g., close modal, display a success message
