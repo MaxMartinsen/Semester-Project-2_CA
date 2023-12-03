@@ -663,9 +663,10 @@
                     type="text"
                     name="name"
                     id="listing-title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-600 focus:border-grey-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
                     placeholder="Type product name"
-                    required=""
+                    required
+                    minlength="3"
                   />
                 </div>
                 <div class="col-span-2">
@@ -676,9 +677,10 @@
                   >
                   <select
                     id="listing-during"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
+                    required
                   >
-                    <option selected="">During</option>
+                    <option value="" disabled selected>During</option>
                     <option id="listing-3d" value="3d">3 Days</option>
                     <option id="listing-7d" value="5d">5 Days</option>
                     <option id="listing-10d" value="7d">Week</option>
@@ -694,18 +696,47 @@
                   <input
                     type="url"
                     id="listing-image"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-                    placeholder="https://.jpg"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
+                    placeholder="https://url.com/image.jpg"
                     required
                   />
                 </div>
                 <div class="col-span-2 sm:col-span-1">
                   <button
-                    type="listing-image-add"
-                    class="p-2.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    id="listing-image-add"
+                    type="button"
+                    class="w-full p-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Add
                   </button>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <button
+                    data-popover-target="popover-bottom"
+                    data-popover-placement="bottom"
+                    type="button"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Media
+                  </button>
+                  <div
+                    data-popover
+                    id="popover-bottom"
+                    role="tooltip"
+                    class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+                  >
+                    <div
+                      class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700"
+                    >
+                      <h3 class="font-semibold text-gray-900 dark:text-white">
+                        Media gallery
+                      </h3>
+                    </div>
+                    <div id="listing-image-list" class="px-3 py-2">
+                      <p id="listing-image-added">Not added</p>
+                    </div>
+                    <div data-popper-arrow></div>
+                  </div>
                 </div>
                 <div class="col-span-2">
                   <label
@@ -716,7 +747,7 @@
                   <textarea
                     id="listing-description"
                     rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-grey-500 focus:border-grey-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
                     placeholder="Write product description here"
                   ></textarea>
                 </div>
