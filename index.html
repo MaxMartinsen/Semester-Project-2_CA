@@ -118,7 +118,7 @@
             <!-- User button -->
             <button
               type="button"
-              class="hidden flex text-sm bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              class="hidden text-sm bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
@@ -195,6 +195,7 @@
             <div class="relative mt-4 md:mt-0">
               <!-- Search button with SVG icon -->
               <button
+                id="navbar-search-button"
                 type="button"
                 class="absolute inset-y-0 end-0 flex items-center m-1 px-2 rounded-lg bg-red-500"
                 aria-label="Search"
@@ -651,7 +652,7 @@
               </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5">
+            <form id="listing-form" class="p-4 md:p-5">
               <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
                   <label
@@ -663,9 +664,10 @@
                     type="text"
                     name="name"
                     id="listing-title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-600 focus:border-grey-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
                     placeholder="Type product name"
-                    required=""
+                    required
+                    minlength="3"
                   />
                 </div>
                 <div class="col-span-2">
@@ -676,9 +678,10 @@
                   >
                   <select
                     id="listing-during"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
+                    required
                   >
-                    <option selected="">During</option>
+                    <option value="" disabled selected>During</option>
                     <option id="listing-3d" value="3d">3 Days</option>
                     <option id="listing-7d" value="5d">5 Days</option>
                     <option id="listing-10d" value="7d">Week</option>
@@ -694,10 +697,47 @@
                   <input
                     type="url"
                     id="listing-image"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-                    placeholder="https://.jpg"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
+                    placeholder="https://url.com/image.jpg"
                     required
                   />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <button
+                    id="listing-image-add"
+                    type="button"
+                    class="w-full p-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <button
+                    data-popover-target="popover-bottom"
+                    data-popover-placement="bottom"
+                    type="button"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Media
+                  </button>
+                  <div
+                    data-popover
+                    id="popover-bottom"
+                    role="tooltip"
+                    class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+                  >
+                    <div
+                      class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700"
+                    >
+                      <h3 class="font-semibold text-gray-900 dark:text-white">
+                        Media gallery
+                      </h3>
+                    </div>
+                    <div id="listing-image-list" class="px-3 py-2">
+                      <p id="listing-image-added">Not added</p>
+                    </div>
+                    <div data-popper-arrow></div>
+                  </div>
                 </div>
                 <div class="col-span-2">
                   <label
@@ -708,7 +748,7 @@
                   <textarea
                     id="listing-description"
                     rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-grey-500 focus:border-grey-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-grey-500 dark:focus:border-grey-500"
                     placeholder="Write product description here"
                   ></textarea>
                 </div>
@@ -754,6 +794,54 @@
                 Start auction
               </button>
               <button
+                disabled
+                type="button"
+                id="listing-progress"
+                class="hidden cursor-not-allowed text-white bg-red-400 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center"
+              >
+                <svg
+                  aria-hidden="true"
+                  role="status"
+                  class="inline w-4 h-4 me-3 text-white animate-spin"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="#E5E7EB"
+                  />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Progress...
+              </button>
+              <button
+                disabled
+                type="button"
+                id="listing-success"
+                class="hidden cursor-not-allowed text-white bg-red-400 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center"
+              >
+                <svg
+                  class="w-4 h-4 me-3 text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 16 12"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5.917 5.724 10.5 15 1.5"
+                  />
+                </svg>
+                Success...
+              </button>
+              <button
                 data-modal-hide="listing-modal"
                 type="button"
                 class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
@@ -787,21 +875,6 @@
                   class="flex tab-trigger active whitespace-nowrap hover:text-red-500"
                 >
                   Top Rated
-                </button>
-                <button
-                  class="flex tab-trigger whitespace-nowrap hover:text-red-500"
-                >
-                  #Tag
-                </button>
-                <button
-                  class="flex tab-trigger whitespace-nowrap hover:text-red-500"
-                >
-                  #Tag
-                </button>
-                <button
-                  class="flex tab-trigger whitespace-nowrap hover:text-red-500"
-                >
-                  #Tag
                 </button>
               </div>
 

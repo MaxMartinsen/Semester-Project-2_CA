@@ -1,4 +1,3 @@
-// src/js/form/auth/handleLogin.mjs
 import { post } from '../../request/post.mjs';
 import { API_BASE_URL, API_VERSION, LOGIN_ENDPOINT } from '../../api/url.mjs';
 import {
