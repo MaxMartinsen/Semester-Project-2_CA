@@ -39,7 +39,6 @@ export function handleCreateListing() {
       tags = JSON.parse(tagifyTags).map((tagObject) => tagObject.value);
     } catch (error) {
       console.error('Error parsing tags JSON:', error);
-      // Handle the error, display a message, or take appropriate action.
       return;
     }
 

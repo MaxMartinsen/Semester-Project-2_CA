@@ -1,4 +1,3 @@
-// src/js/utils/checkLoginState.mjs
 import { updateUserInfo } from './updateUserInfo.mjs';
 
 export function checkLoginState() {

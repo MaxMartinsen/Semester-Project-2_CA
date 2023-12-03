@@ -1,4 +1,3 @@
-// src/js/form/auth/handleRegistration.mjs
 import { post } from '../../request/post.mjs';
 import {
   API_BASE_URL,

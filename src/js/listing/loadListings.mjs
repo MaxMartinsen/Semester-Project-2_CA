@@ -3,16 +3,38 @@ import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
 
 let currentListings = [];
 
-export async function loadListings() {
+export async function loadListings(searchTerm = '', isSearch = false) {
   try {
-    const url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true&sort=created&sortOrder=desc&limit=12&offset=0`;
-    const listings = await get(url);
+    let url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true`;
+
+    const limit = isSearch ? 60 : 12;
+    url += `&sort=created&sortOrder=desc&limit=${limit}&offset=0`;
+
+    console.log('Fetching URL:', url); // Debugging
+
+    let listings = await get(url);
+
+    console.log('Listings fetched:', listings.length); // Debugging
+
+    if (isSearch && searchTerm) {
+      listings = listings.filter(
+        (listing) =>
+          (listing.title &&
+            listing.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (listing.description &&
+            listing.description
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase()))
+      );
+      console.log('Listings after filter:', listings.length); // Debugging
+    }
+
     const newListingIds = listings.map((listing) => listing.id);
     const currentListingIds = currentListings.map((listing) => listing.id);
 
     if (!arraysEqual(newListingIds, currentListingIds)) {
       updateListingsDOM(listings);
-      currentListings = listings; // Update current listings
+      currentListings = listings;
     }
   } catch (error) {
     console.error('Failed to load listings:', error);
