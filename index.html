@@ -26,7 +26,7 @@
     <div class="wrapper">
       <!-- Nav -->
       <nav
-        class="bg-white dark:bg-gray-900 md:px-4 fixed w-full border-b border-gray-300"
+        class="bg-white dark:bg-gray-900 md:px-4 fixed z-20 w-full border-b border-gray-300"
       >
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3"
@@ -954,7 +954,7 @@
             <!--Card Content-->
             <div
               id="card-content"
-              class="grid grid-cols-1 gap-5 lg:grid-cols-2 mt-10 hidden"
+              class="grid grid-cols-1 gap-5 lg:grid-cols-2 mt-10"
             >
               <!--Item Content-->
               <div
@@ -1002,20 +1002,22 @@
               </div>
             </div>
             <!--Single Content-->
-            <div id="single-card-content" class="grid grid-cols-1 mt-10">
+            <div id="single-card-content" class="grid-cols-1 mt-10 hidden">
               <!--Item Content-->
               <div
                 id="single-card-item"
                 href="#"
-                class="grid grid-cols-1 md:grid-cols-4 group overflow-hidden p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                class="grid grid-cols-1 md:grid-cols-2 gap-4 group overflow-hidden p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <div
                   id="animation-carousel"
-                  class="relative w-full col-span-2"
+                  class="relative w-full col-span-1"
                   data-carousel="static"
                 >
                   <!-- Carousel wrapper -->
-                  <div class="relative h-96 overflow-hidden rounded-lg md:h-96">
+                  <div
+                    class="relative h-96 overflow-hidden rounded-lg md:h-96 z-10"
+                  >
                     <!-- Item 1 -->
                     <div
                       class="hidden duration-200 ease-linear"
@@ -1028,39 +1030,6 @@
                       />
                     </div>
                     <!-- Item 2 -->
-                    <div
-                      class="hidden duration-200 ease-linear"
-                      data-carousel-item
-                    >
-                      <img
-                        src="/image.jpg"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="..."
-                      />
-                    </div>
-                    <!-- Item 3 -->
-                    <div
-                      class="hidden duration-200 ease-linear"
-                      data-carousel-item="active"
-                    >
-                      <img
-                        src="/image.jpg"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="..."
-                      />
-                    </div>
-                    <!-- Item 4 -->
-                    <div
-                      class="hidden duration-200 ease-linear"
-                      data-carousel-item
-                    >
-                      <img
-                        src="/image.jpg"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="..."
-                      />
-                    </div>
-                    <!-- Item 5 -->
                     <div
                       class="hidden duration-200 ease-linear"
                       data-carousel-item
@@ -1127,18 +1096,18 @@
                   </button>
                 </div>
 
-                <div class="col-span-2">
+                <div class="col-span-1">
                   <div
                     class="flex flex-auto flex-col pl-0 md:pl-12 lg:pl-4 leading-normal h-full"
                   >
                     <h3
-                      id="card-title"
+                      id="single-card-title"
                       class="mt-5 font-bold text-gray-900 text-2xl"
                     >
                       Title
                     </h3>
                     <p
-                      id="card-description"
+                      id="single-card-description"
                       class="mt-5 flex-auto font-normal text-gray-700 dark:text-gray-400"
                     >
                       Description
@@ -1158,27 +1127,27 @@
                     </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-3 col-span-4 mt-4">
-                  <div class="flex items-center gap-4">
-                    <div class="relative">
-                      <img
-                        class="w-10 h-10 rounded-full"
-                        src="/user.svg"
-                        alt=""
-                      />
-                      <span
-                        class="bottom-0 left-7 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
-                      ></span>
-                    </div>
-                    <div class="font-medium dark:text-white">
-                      <div>Seller Default</div>
-                      <div class="text-sm text-gray-500 dark:text-gray-400">
-                        seller@stud.noroff.no
-                      </div>
+                <div class="flex items-start gap-4 col-span-1">
+                  <div class="relative">
+                    <img
+                      id="seller-avatar"
+                      class="w-10 h-10 rounded-full"
+                      src="/user.svg"
+                      alt=""
+                    />
+                    <span
+                      class="bottom-0 left-7 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
+                    ></span>
+                  </div>
+                  <div class="font-medium dark:text-white">
+                    <div id="seller-name">Seller Default</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Seller
                     </div>
                   </div>
-
-                  <form class="max-w-[18rem] mx-auto flex">
+                </div>
+                <div class="max-w-[18rem] mx-auto flex flex-col col-span-1">
+                  <form class="flex">
                     <label
                       for="currency-input"
                       class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -1206,21 +1175,36 @@
                       </div>
                       <input
                         type="number"
-                        id="currency-input"
+                        id="bid-input"
                         class="block p-3 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Enter coins amount"
                         required
                       />
                     </div>
                     <button
-                      id="dropdown-currency-button"
-                      data-dropdown-toggle="dropdown-currency"
-                      class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                      id="bid-button"
+                      class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-e-lg hover:bg-red-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
                       type="button"
                     >
                       BID
                     </button>
                   </form>
+
+                  <ul
+                    class="mt-4 max-w-[18rem] text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  >
+                    <li
+                      id="bidder"
+                      class="w-full flex justify-between px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600"
+                    >
+                      <div id="bidder-name">
+                        <span id="bidder-count" class="me-1">1:</span>Profile
+                      </div>
+                      <div id="bidder-amount" class="text-gray-500">
+                        0000<span class="ml-1">coins</span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

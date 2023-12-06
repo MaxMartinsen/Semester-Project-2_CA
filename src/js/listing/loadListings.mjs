@@ -1,5 +1,6 @@
 import { get } from '../request/get.mjs';
 import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
+import { loadSingleListing } from './listing.mjs';
 
 let currentListings = [];
 
@@ -68,6 +69,9 @@ function createListingCard(listing) {
 
   // Create and append content div
   cardItem.appendChild(createContentDiv(listing));
+  cardItem.addEventListener('click', () => {
+    loadSingleListing(listing.id);
+  });
 
   return cardItem;
 }
