@@ -1009,6 +1009,7 @@
                 href="#"
                 class="grid grid-cols-1 md:grid-cols-2 gap-4 group overflow-hidden p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
+                <!-- Carousel Content -->
                 <div
                   id="animation-carousel"
                   class="relative w-full col-span-1"
@@ -1016,14 +1017,17 @@
                 >
                   <!-- Carousel wrapper -->
                   <div
+                    id="single-card-carousel"
                     class="relative h-96 overflow-hidden rounded-lg md:h-96 z-10"
                   >
                     <!-- Item 1 -->
                     <div
+                      id="single-card-carousel-item"
                       class="hidden duration-200 ease-linear"
                       data-carousel-item
                     >
                       <img
+                        id="single-card-carousel-img"
                         src="/image.jpg"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="..."
@@ -1031,10 +1035,51 @@
                     </div>
                     <!-- Item 2 -->
                     <div
+                      id="single-card-carousel-item"
                       class="hidden duration-200 ease-linear"
                       data-carousel-item
                     >
                       <img
+                        id="single-card-carousel-item"
+                        src="/image.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt="..."
+                      />
+                    </div>
+                    <!-- Item 3 -->
+                    <div
+                      id="single-card-carousel-item"
+                      class="hidden duration-200 ease-linear"
+                      data-carousel-item="active"
+                    >
+                      <img
+                        id="single-card-carousel-item"
+                        src="/image.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt="..."
+                      />
+                    </div>
+                    <!-- Item 4 -->
+                    <div
+                      id="single-card-carousel-item"
+                      class="hidden duration-200 ease-linear"
+                      data-carousel-item
+                    >
+                      <img
+                        id="single-card-carousel-item"
+                        src="/image.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt="..."
+                      />
+                    </div>
+                    <!-- Item 5 -->
+                    <div
+                      id="single-card-carousel-item"
+                      class="hidden duration-200 ease-linear"
+                      data-carousel-item
+                    >
+                      <img
+                        id="single-card-carousel-item"
                         src="/image.jpg"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="..."
@@ -1043,6 +1088,7 @@
                   </div>
                   <!-- Slider controls -->
                   <button
+                    id="single-card-media-prev"
                     type="button"
                     class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-prev
@@ -1069,6 +1115,7 @@
                     </span>
                   </button>
                   <button
+                    id="single-card-media-next"
                     type="button"
                     class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-next
