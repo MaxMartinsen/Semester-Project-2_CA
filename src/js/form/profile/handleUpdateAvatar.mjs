@@ -4,7 +4,7 @@ import {
   API_VERSION,
   PROFILES_ENDPOINT,
 } from '../../api/url.mjs';
-import { updateAvatar } from '../../validation/validation.mjs';
+import { updateAvatar } from '../../utils/utils.mjs';
 
 export function handleUpdateAvatar() {
   const settingsAcceptButton = document.getElementById('settings-user-accept');

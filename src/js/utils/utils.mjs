@@ -9,3 +9,5 @@ export { updateSettingsModal } from './updateSettingsModal.mjs';
 
 export { createTagSpan } from './createTagSpan.mjs';
 export { formatTimeLeft } from './formatTimeLeft.mjs';
+
+export { updateAvatar } from './updateAvatar.mjs';
