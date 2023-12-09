@@ -1,6 +1,7 @@
 import { get } from '../request/get.mjs';
 import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
 import { loadSingleListing } from './listing.mjs';
+import { createTagSpan, formatTimeLeft } from '../utils/utils.mjs';
 
 let currentListings = [];
 
@@ -115,20 +116,6 @@ function createDescriptionP(description) {
   return descriptionP;
 }
 
-function createTagSpan(tags) {
-  const tagSpan = document.createElement('span');
-
-  if (tags && tags.length > 0) {
-    tagSpan.className =
-      'mt-4 w-fit text-gray-600 py-2 px-4 text-center font-medium bg-gray-200 rounded-xl';
-    tagSpan.innerHTML = tags.map((tag) => `#${tag}&nbsp;`).join(' ');
-  } else {
-    tagSpan.style.display = 'none';
-  }
-
-  return tagSpan;
-}
-
 function createTimeLeftDiv(timeString) {
   const div = document.createElement('div');
   div.className = 'flex items-center lg:justify-between mt-4 text-gray-600';
@@ -145,26 +132,4 @@ function createTimeLeftDiv(timeString) {
   div.appendChild(span);
 
   return div;
-}
-
-function formatTimeLeft(timeString) {
-  const now = new Date();
-  const endTime = new Date(timeString);
-  const timeDiff = endTime - now;
-
-  if (timeDiff < 0) {
-    return 'Ended';
-  }
-
-  const minutes = Math.floor(timeDiff / 60000);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-
-  if (days > 0) {
-    return `${days} day${days > 1 ? 's' : ''}`;
-  } else if (hours > 0) {
-    return `${hours}h ${minutes % 60}min`;
-  } else {
-    return `${minutes}min`;
-  }
 }

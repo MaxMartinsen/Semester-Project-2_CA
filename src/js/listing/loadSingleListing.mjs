@@ -1,5 +1,6 @@
 import { get } from '../request/get.mjs';
 import { API_BASE_URL, API_VERSION, LISTINGS_ENDPOINT } from '../api/url.mjs';
+import { createTagSpan, formatTimeLeft } from '../utils/utils.mjs';
 
 export async function loadSingleListing(listingId) {
   try {
@@ -19,6 +20,8 @@ function updateSingleListing(listing) {
   const descriptionElement = document.getElementById('single-card-description');
   const prevButton = document.getElementById('single-card-media-prev');
   const nextButton = document.getElementById('single-card-media-next');
+  const tagElement = document.getElementById('single-card-tag');
+  const timerElement = document.getElementById('single-card-timer');
   let currentIndex = 0;
 
   if (
@@ -26,7 +29,9 @@ function updateSingleListing(listing) {
     !cardContent ||
     !carouselWrapper ||
     !titleElement ||
-    !descriptionElement
+    !descriptionElement ||
+    !tagElement ||
+    !timerElement
   ) {
     console.error('Required DOM elements not found');
     return;
@@ -37,7 +42,7 @@ function updateSingleListing(listing) {
     const mediaItems =
       listing.media && listing.media.length > 0
         ? listing.media
-        : ['/image.jpg'];
+        : ['/Semester-Project-2_CA/image.jpg'];
 
     mediaItems.forEach((imageUrl, index) => {
       const carouselItem = document.createElement('div');
@@ -55,6 +60,9 @@ function updateSingleListing(listing) {
       carouselItem.appendChild(img);
       carouselWrapper.appendChild(carouselItem);
     });
+    const showNavigation = mediaItems.length > 1;
+    prevButton.style.display = showNavigation ? 'flex' : 'none';
+    nextButton.style.display = showNavigation ? 'flex' : 'none';
   }
 
   function showNextImage() {
@@ -73,10 +81,13 @@ function updateSingleListing(listing) {
   prevButton.addEventListener('click', showPrevImage);
   nextButton.addEventListener('click', showNextImage);
 
-  updateCarousel(); // Initialize the carousel with the first image
+  updateCarousel();
 
   titleElement.textContent = listing.title;
   descriptionElement.textContent = listing.description;
+  const tagSpan = createTagSpan(listing.tags);
+  tagElement.replaceWith(tagSpan);
+  timerElement.textContent = formatTimeLeft(listing.endsAt);
 
   cardContent.classList.add('hidden');
   singleCardContent.classList.remove('hidden');
