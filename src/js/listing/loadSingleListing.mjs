@@ -26,10 +26,16 @@ async function handleBidSubmission(listingId) {
   const bidAmount = Number(bidInput.value);
   const accessToken = localStorage.getItem('accessToken');
 
-  const highestBid =
-    currentListing.bids.length > 0 ? currentListing.bids[0].amount : 0;
+  if (!bidAmount) {
+    alert('Please enter a bid amount.');
+    return;
+  }
 
-  if (!bidAmount || bidAmount <= highestBid) {
+  const highestBid =
+    currentListing.bids && currentListing.bids.length > 0
+      ? currentListing.bids[0].amount
+      : 0;
+  if (bidAmount <= highestBid) {
     alert('Bid must be higher than the current highest bid.');
     return;
   }
@@ -42,10 +48,8 @@ async function handleBidSubmission(listingId) {
       accessToken
     );
 
-    const newBid = {
-      bidderName: 'Your Name',
-      amount: bidAmount,
-    };
+    // Update bid list
+    const newBid = { bidderName: 'Your Bid', amount: bidAmount };
     currentListing.bids.unshift(newBid);
     updateBidList(currentListing.bids);
   } catch (error) {
@@ -53,8 +57,23 @@ async function handleBidSubmission(listingId) {
   }
 }
 
+function sortBidsDescending(bids) {
+  return bids.sort((a, b) => b.amount - a.amount);
+}
+
 function updateBidList(bids) {
-  const bidListElement = document.getElementById('bid-list');
+  let bidListElement = document.getElementById('bid-list');
+
+  // Create bid list element if it doesn't exist
+  if (!bidListElement) {
+    bidListElement = document.createElement('ul');
+    bidListElement.id = 'bid-list';
+    const bidContentElement = document.getElementById(
+      'single-card-bid-content'
+    );
+    bidContentElement.appendChild(bidListElement);
+  }
+
   bidListElement.innerHTML = '';
 
   bids.forEach((bid, index) => {
@@ -62,7 +81,7 @@ function updateBidList(bids) {
     bidListItem.className =
       'w-full flex justify-between px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600';
     bidListItem.innerHTML = `<div id="bidder-name"><span id="bidder-count" class="me-1">${
-      index + 1
+      bids.length - index
     }:</span>${
       bid.bidderName
     }</div><div id="bidder-amount" class="text-gray-500">${
@@ -70,10 +89,13 @@ function updateBidList(bids) {
     }<span class="ml-1">coins</span></div>`;
     bidListElement.appendChild(bidListItem);
   });
+
+  // Ensure bid list is visible
+  bidListElement.style.display = '';
 }
 
 function updateSingleListing(listing) {
-  // Element selection
+  const currentUserName = localStorage.getItem('name');
   const singleCardContent = document.getElementById('single-card-content');
   const cardContent = document.getElementById('card-content');
   const carouselWrapper = document.getElementById('single-card-carousel');
@@ -86,12 +108,21 @@ function updateSingleListing(listing) {
   const sellerAvatarImg = document.getElementById('seller-avatar');
   const sellerNameDiv = document.getElementById('seller-name');
   const bidButton = document.getElementById('bid-button');
+  const bidFormElement = document.getElementById('bid-form');
   const sellerAvatarElement = document.getElementById(
     'single-card-seller-avatar'
   );
   const bidContentElement = document.getElementById('single-card-bid-content');
+  let bidListElement = document.getElementById('bid-list');
 
-  // Check for missing DOM elements
+  // Ensure bid list element exists
+  if (!bidListElement && bidContentElement) {
+    bidListElement = document.createElement('ul');
+    bidListElement.id = 'bid-list';
+    bidContentElement.appendChild(bidListElement);
+  }
+
+  // Check for required DOM elements
   if (
     !singleCardContent ||
     !cardContent ||
@@ -99,22 +130,20 @@ function updateSingleListing(listing) {
     !titleElement ||
     !descriptionElement ||
     !tagElement ||
-    !timerElement
+    !timerElement ||
+    !sellerAvatarImg ||
+    !sellerNameDiv ||
+    !bidButton ||
+    !sellerAvatarElement ||
+    !bidContentElement
   ) {
     console.error('Required DOM elements not found');
     return;
   }
 
-  const isAuthenticated = isUserAuthenticated();
   let currentIndex = 0;
 
-  // Update bid list for authenticated users
-  if (isAuthenticated && listing.bids && listing.bids.length > 0) {
-    updateBidList(listing.bids);
-  }
-
-  // Event listener for bid submission
-  bidButton.addEventListener('click', () => handleBidSubmission(listing.id));
+  // Update carousel
   function updateCarousel() {
     carouselWrapper.innerHTML = '';
     const mediaItems =
@@ -124,7 +153,7 @@ function updateSingleListing(listing) {
 
     mediaItems.forEach((imageUrl, index) => {
       const carouselItem = document.createElement('div');
-      carouselItem.className = `duration-200 ease-linear ${
+      carouselItem.className = `carousel-item duration-200 ease-linear ${
         index === currentIndex ? '' : 'hidden'
       }`;
       carouselItem.setAttribute('data-carousel-item', '');
@@ -138,6 +167,7 @@ function updateSingleListing(listing) {
       carouselItem.appendChild(img);
       carouselWrapper.appendChild(carouselItem);
     });
+
     const showNavigation = mediaItems.length > 1;
     prevButton.style.display = showNavigation ? 'flex' : 'none';
     nextButton.style.display = showNavigation ? 'flex' : 'none';
@@ -156,23 +186,81 @@ function updateSingleListing(listing) {
     updateCarousel();
   }
 
+  // Attach event listeners for carousel navigation
   prevButton.addEventListener('click', showPrevImage);
   nextButton.addEventListener('click', showNextImage);
 
+  // Initialize carousel
   updateCarousel();
 
+  // Update other elements
   titleElement.textContent = listing.title;
   descriptionElement.textContent = listing.description;
-  const tagSpan = createTagSpan(listing.tags);
-  tagElement.replaceWith(tagSpan);
+  tagElement.replaceWith(createTagSpan(listing.tags));
   timerElement.textContent = formatTimeLeft(listing.endsAt);
-  sellerAvatarImg.src =
-    listing.seller.avatar || '/Semester-Project-2_CA/user.svg';
-  sellerNameDiv.textContent = listing.seller.name || 'Seller Default';
 
+  // Handle seller and bid section visibility
+  const isAuthenticated = isUserAuthenticated();
+  const isOwnListing =
+    isAuthenticated &&
+    listing.seller &&
+    listing.seller.name === currentUserName;
+
+  if (isAuthenticated) {
+    if (isOwnListing) {
+      // Hide bid form, but show bid list for the user's own listing
+      if (bidFormElement) bidFormElement.style.visibility = 'hidden';
+      if (listing.bids && listing.bids.length > 0) {
+        updateBidList(sortBidsDescending(listing.bids));
+        bidListElement.style.display = '';
+      } else {
+        bidListElement.style.display = 'none';
+      }
+    } else {
+      // Show both bid form and bid list for listings not owned by the user
+      if (bidFormElement) bidFormElement.style.display = 'flex';
+      bidButton.addEventListener('click', () =>
+        handleBidSubmission(listing.id)
+      );
+      if (listing.bids && listing.bids.length > 0) {
+        updateBidList(sortBidsDescending(listing.bids));
+        bidListElement.style.display = '';
+      } else {
+        bidListElement.style.display = 'none';
+      }
+    }
+  } else {
+    // Hide both bid form and bid list for non-authenticated users
+    if (bidFormElement) bidFormElement.style.display = 'none';
+    bidListElement.style.display = 'none';
+  }
+
+  if (isAuthenticated && listing.seller) {
+    sellerAvatarImg.src =
+      listing.seller.avatar || '/Semester-Project-2_CA/user.svg';
+    sellerNameDiv.textContent = listing.seller.name || 'Seller Default';
+  }
+
+  // Hide or show seller avatar and bid form based on whether it's the user's own listing
+  sellerAvatarElement.style.visibility = isOwnListing ? 'hidden' : 'flex';
+
+  if (isAuthenticated && !isOwnListing) {
+    bidButton.addEventListener('click', () => handleBidSubmission(listing.id));
+  }
+
+  if (isAuthenticated) {
+    if (listing.bids && listing.bids.length > 0) {
+      updateBidList(sortBidsDescending(listing.bids));
+      bidListElement.style.display = '';
+    } else {
+      bidListElement.style.display = 'none';
+    }
+  } else {
+    bidListElement.style.display = 'none';
+  }
+
+  // Update layout
   cardContent.classList.add('hidden');
   singleCardContent.classList.remove('hidden');
   singleCardContent.classList.add('grid');
-  sellerAvatarElement.style.display = isAuthenticated ? 'flex' : 'none';
-  bidContentElement.style.display = isAuthenticated ? 'flex' : 'none';
 }
