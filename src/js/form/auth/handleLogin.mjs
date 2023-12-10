@@ -5,9 +5,18 @@ import {
   clearLoginForm,
   updateSettingsModal,
 } from '../../utils/utils.mjs';
+import {
+  validateEmail,
+  validatePassword,
+} from '../../validation/validation.mjs';
 
 export function handleLogin() {
   const loginForm = document.getElementById('login-form');
+  const loginErrorBody = document.getElementById('login-error-body');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('login-email-error');
+  const passwordError = document.getElementById('login-password-error');
   const closeButton = document.getElementById('close-login-modal');
 
   if (closeButton) {
@@ -17,11 +26,27 @@ export function handleLogin() {
   if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
       const authButtons = document.getElementById('auth-buttons');
       const userButton = document.getElementById('user-menu-button');
       const userAvatar = document.getElementById('user-avatar');
+
+      // Validate email
+      if (!validateEmail(email)) {
+        emailError.classList.remove('hidden');
+        return;
+      } else {
+        emailError.classList.add('hidden');
+      }
+
+      // Validate password
+      if (!validatePassword(password)) {
+        passwordError.classList.remove('hidden');
+        return;
+      } else {
+        passwordError.classList.add('hidden');
+      }
 
       try {
         const response = await post(
@@ -60,9 +85,17 @@ export function handleLogin() {
         }
       } catch (error) {
         console.error('Login failed', error);
+        if (loginForm && loginErrorBody) {
+          loginForm.style.display = 'none';
+          loginErrorBody.style.display = 'block';
+        }
       }
     });
   } else {
     console.error('Login form not found in the DOM');
+    if (loginForm && loginErrorBody) {
+      loginForm.style.display = 'none';
+      loginErrorBody.style.display = 'block';
+    }
   }
 }

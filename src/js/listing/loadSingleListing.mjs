@@ -79,7 +79,7 @@ function updateBidList(bids) {
   bids.forEach((bid, index) => {
     const bidListItem = document.createElement('li');
     bidListItem.className =
-      'w-full flex justify-between px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600';
+      'w-full flex justify-between px-4 py-2 border-b border-gray-200 rounded-t-lg';
     bidListItem.innerHTML = `<div id="bidder-name"><span id="bidder-count" class="me-1">${
       bids.length - index
     }:</span>${

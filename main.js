@@ -11,6 +11,7 @@ import { handleUpdateAvatar } from './src/js/form/profile/handleUpdateAvatar.mjs
 import { loadListings, initializeSearch } from './src/js/listing/listing.mjs';
 import { initializeTagify } from './src/js/tagify/initializeTagify.mjs';
 import { handleCreateListing } from './src/js/form/listing/handleCreateListing.mjs';
+import { handleCloseButton } from './src/js/components/components.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
   handleRegistration();
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeTagify();
   handleCreateListing();
   initializeSearch();
+  handleCloseButton();
   // Settings modal observer setup
   const settingsModal = document.getElementById('settings-modal');
   if (settingsModal) {

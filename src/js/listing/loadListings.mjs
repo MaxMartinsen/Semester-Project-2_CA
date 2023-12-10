@@ -63,7 +63,7 @@ function createListingCard(listing) {
   // Create card item
   const cardItem = document.createElement('div');
   cardItem.className =
-    'flex group overflow-hidden cursor-pointer flex-col p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700';
+    'flex group overflow-hidden cursor-pointer flex-col p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100';
 
   // Create and append image div
   cardItem.appendChild(createImageDiv(listing.media[0]));
@@ -110,8 +110,7 @@ function createTitleH3(title) {
 function createDescriptionP(description) {
   const descriptionP = document.createElement('p');
   descriptionP.id = 'card-description';
-  descriptionP.className =
-    'mt-2 flex-auto font-normal text-gray-700 dark:text-gray-400';
+  descriptionP.className = 'mt-2 flex-auto font-normal text-gray-700';
   descriptionP.textContent = description;
   return descriptionP;
 }
