@@ -14,6 +14,11 @@ Our unique credit system enhances your experience use them to bid. Although brow
 
 Will bid, give bid.
 
+### Deployment
+
+The site is hosted on GitHub Pages. Any commit to the `main` branch will trigger a deployment.
+The site can be found at [https://maxmartinsen.github.io/Semester-Project-2_CA/](https://maxmartinsen.github.io/Semester-Project-2_CA/).
+
 ## Target audience:
 
 ### Our primary audience includes:
