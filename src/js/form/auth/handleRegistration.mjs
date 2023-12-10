@@ -18,9 +18,9 @@ export function handleRegistration() {
   const nameInput = document.getElementById('name-sign-up');
   const nameError = document.getElementById('name-error');
   const emailInput = document.getElementById('email-sign-up');
-  const emailError = document.getElementById('email-error');
-  const passwordInput = document.getElementById('password-sign-up');
-  const passwordError = document.getElementById('password-error');
+  const emailError = document.getElementById('sign-up-email-error');
+  const passwordInput = document.getElementById('sign-up-password');
+  const passwordError = document.getElementById('sign-up-password-error');
 
   if (signUpForm) {
     signUpForm.addEventListener('submit', async (event) => {

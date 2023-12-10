@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      href="https://unpkg.com/tailwindcss@2/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <link
@@ -242,7 +242,7 @@
               </li>
 
               <!-- Separator -->
-              <div class="hidden md:block bg-gray-300 w-px h-8 mx-2"></div>
+              <li class="hidden md:block bg-gray-300 w-px h-8 mx-2"></li>
 
               <li>
                 <a
@@ -313,12 +313,13 @@
                     type="email"
                     name="email"
                     id="email"
+                    autocomplete="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="name@stud.noroff.no"
                     required
                   />
                   <p
-                    id="email-error"
+                    id="login-email-error"
                     class="hidden mt-2 text-sm font-medium text-red-600"
                   >
                     The email value must be a valid @stud.noroff.no email
@@ -340,7 +341,7 @@
                     required
                   />
                   <p
-                    id="password-error"
+                    id="login-password-error"
                     class="hidden mt-2 text-sm font-medium text-red-600"
                   >
                     The password value must be at least 8 characters.
@@ -446,7 +447,7 @@
               <form id="sign-up-form" class="space-y-4" action="#">
                 <div>
                   <label
-                    for="nameSignUp"
+                    for="name-sign-up"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Name</label
                   >
@@ -467,7 +468,7 @@
                 </div>
                 <div>
                   <label
-                    for="emailSignUp"
+                    for="email-sign-up"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Email</label
                   >
@@ -480,7 +481,7 @@
                     required
                   />
                   <p
-                    id="email-error"
+                    id="sign-up-email-error"
                     class="hidden mt-2 text-sm font-medium text-red-600"
                   >
                     The email value must be a valid @stud.noroff.no email
@@ -489,20 +490,20 @@
                 </div>
                 <div>
                   <label
-                    for="passwordSignUp"
+                    for="sign-up-password"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Password</label
                   >
                   <input
                     type="password"
                     name="passwordSignUp"
-                    id="password-sign-up"
+                    id="sign-up-password"
                     placeholder="••••••••"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     required
                   />
                   <p
-                    id="password-error"
+                    id="sign-up-password-error"
                     class="hidden mt-2 text-sm font-medium text-red-600"
                   >
                     The password value must be at least 8 characters.
@@ -510,7 +511,7 @@
                 </div>
                 <div>
                   <label
-                    for="avatarSignUp"
+                    for="avatar-sign-up"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Avatar</label
                   >
@@ -661,7 +662,7 @@
               >
               <div>
                 <label
-                  for="url"
+                  for="settings-user-url"
                   class="block mb-2 text-sm font-medium text-gray-900"
                   >Change Avatar URL</label
                 >
@@ -744,7 +745,7 @@
               <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
                   <label
-                    for="name"
+                    for="listing-title"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Title</label
                   >
@@ -760,7 +761,7 @@
                 </div>
                 <div class="col-span-2">
                   <label
-                    for="price"
+                    for="listing-during"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >How quickly do you want to sell?</label
                   >
@@ -778,7 +779,7 @@
                 </div>
                 <div class="col-span-2">
                   <label
-                    for="website"
+                    for="listing-image"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Image URL</label
                   >
@@ -827,7 +828,7 @@
                 </div>
                 <div class="col-span-2">
                   <label
-                    for="description"
+                    for="listing-description"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Product Description</label
                   >
@@ -840,7 +841,7 @@
                 </div>
                 <div class="col-span-2">
                   <label
-                    for="Tags"
+                    for="listing-tags"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >Tags</label
                   >
@@ -1182,7 +1183,6 @@
               <!--Item Content-->
               <div
                 id="card-item"
-                href="#"
                 class="flex group overflow-hidden cursor-pointer flex-col p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100"
               >
                 <img
@@ -1229,7 +1229,6 @@
               <!--Item Content-->
               <div
                 id="single-card-item"
-                href="#"
                 class="grid grid-cols-1 md:grid-cols-2 gap-4 group overflow-hidden p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100"
               >
                 <!-- Carousel Content -->
@@ -1372,7 +1371,7 @@
                 >
                   <form id="bid-form" class="flex">
                     <label
-                      for="currency-input"
+                      for="bid-input"
                       class="mb-2 text-sm font-medium text-gray-900 sr-only"
                       >Your Bid</label
                     >

@@ -15,8 +15,8 @@ export function handleLogin() {
   const loginErrorBody = document.getElementById('login-error-body');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
-  const emailError = document.getElementById('email-error');
-  const passwordError = document.getElementById('password-error');
+  const emailError = document.getElementById('login-email-error');
+  const passwordError = document.getElementById('login-password-error');
   const closeButton = document.getElementById('close-login-modal');
 
   if (closeButton) {
