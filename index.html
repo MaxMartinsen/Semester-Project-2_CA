@@ -26,7 +26,7 @@
     <div class="wrapper">
       <!-- Nav -->
       <nav
-        class="bg-white dark:bg-gray-900 md:px-4 fixed w-full border-b border-gray-300"
+        class="bg-white dark:bg-gray-900 md:px-4 fixed z-20 w-full border-b border-gray-300"
       >
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3"
@@ -858,7 +858,7 @@
         <section
           class="max-w-[1168px] sm:flex flex-wrap items-center justify-between mx-auto p-3"
         >
-          <div class="text-gray-600 dark:text-gray-50 mt-20">
+          <div class="text-gray-600 dark:text-gray-50 mt-20 w-full">
             <h1
               id="h1-title"
               class="font-semibold text-2xl md:text-4xl sm:text-3xl tracking-tight pb-2"
@@ -872,6 +872,7 @@
                 class="flex flex-nowrap gap-5 overflow-x-auto text-lg py-2 mr-5 font-medium text-[#787878]"
               >
                 <button
+                  id="tab-button"
                   class="flex tab-trigger active whitespace-nowrap hover:text-red-500"
                 >
                   Top Rated
@@ -997,6 +998,215 @@
                       >00.00.00</span
                     >
                   </div>
+                </div>
+              </div>
+            </div>
+            <!--Single Content-->
+            <div id="single-card-content" class="grid-cols-1 mt-10 hidden">
+              <!--Item Content-->
+              <div
+                id="single-card-item"
+                href="#"
+                class="grid grid-cols-1 md:grid-cols-2 gap-4 group overflow-hidden p-4 bg-white border border-gray-200 rounded-lg shadow-md shadow-gray-400 md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
+                <!-- Carousel Content -->
+                <div
+                  id="animation-carousel"
+                  class="relative w-full col-span-1"
+                  data-carousel="static"
+                >
+                  <!-- Carousel wrapper -->
+                  <div
+                    id="single-card-carousel"
+                    class="relative h-96 overflow-hidden rounded-lg md:h-96 z-10"
+                  >
+                    <!-- Item 1 -->
+                    <div
+                      id="single-card-carousel-item"
+                      class="hidden duration-200 ease-linear"
+                      data-carousel-item
+                    >
+                      <img
+                        id="single-card-carousel-img"
+                        src="/image.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt="..."
+                      />
+                    </div>
+                  </div>
+                  <!-- Slider controls -->
+                  <button
+                    id="single-card-media-prev"
+                    type="button"
+                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev
+                  >
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/60 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+                    >
+                      <svg
+                        class="w-4 h-4 text-gray-800 dark:text-gray-800 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 1 1 5l4 4"
+                        />
+                      </svg>
+                      <span class="sr-only">Previous</span>
+                    </span>
+                  </button>
+                  <button
+                    id="single-card-media-next"
+                    type="button"
+                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next
+                  >
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/60 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+                    >
+                      <svg
+                        class="w-4 h-4 text-gray-800 dark:text-gray-800 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 9 4-4-4-4"
+                        />
+                      </svg>
+                      <span class="sr-only">Next</span>
+                    </span>
+                  </button>
+                </div>
+                <!-- Seller Content -->
+                <div class="col-span-1">
+                  <div
+                    class="flex flex-auto flex-col pl-0 md:pl-12 lg:pl-4 leading-normal h-full"
+                  >
+                    <h3
+                      id="single-card-title"
+                      class="mt-5 font-bold text-gray-900 text-2xl"
+                    >
+                      Title
+                    </h3>
+                    <p
+                      id="single-card-description"
+                      class="mt-5 flex-auto font-normal text-gray-700 dark:text-gray-400"
+                    >
+                      Description
+                    </p>
+                    <span
+                      id="single-card-tag"
+                      class="mt-4 w-fit text-gray-600 py-2 px-4 text-center font-medium bg-gray-200 rounded-xl"
+                      >Tag</span
+                    >
+                    <div class="flex items-center mt-4 text-gray-600">
+                      <p class="font-semibold text-lg uppercase">Time left :</p>
+                      <span
+                        id="single-card-timer"
+                        class="text-lg ml-10 rounded-xl py-1 px-2 border-red-400 bg-red-100 border-2 group-hover:bg-red-400 group-hover:text-white"
+                        >00.00.00</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="single-card-seller-avatar"
+                  class="flex items-start gap-4 col-span-1"
+                >
+                  <div class="relative">
+                    <img
+                      id="seller-avatar"
+                      class="w-10 h-10 rounded-full"
+                      src="/user.svg"
+                      alt=""
+                    />
+                    <span
+                      class="bottom-0 left-7 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
+                    ></span>
+                  </div>
+                  <div class="font-medium dark:text-white">
+                    <div id="seller-name">Seller Default</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Seller
+                    </div>
+                  </div>
+                </div>
+                <!-- Bid Content -->
+                <div
+                  id="single-card-bid-content"
+                  class="max-w-[18rem] mx-auto flex flex-col col-span-1"
+                >
+                  <form id="bid-form" class="flex">
+                    <label
+                      for="currency-input"
+                      class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                      >Your Bid</label
+                    >
+                    <div class="relative w-full">
+                      <div
+                        class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none"
+                      >
+                        <svg
+                          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1M2 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="number"
+                        id="bid-input"
+                        class="block p-3 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="Enter coins amount"
+                        required
+                      />
+                    </div>
+                    <button
+                      id="bid-button"
+                      class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-e-lg hover:bg-red-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                      type="button"
+                    >
+                      BID
+                    </button>
+                  </form>
+                  <ul
+                    id="bid-list"
+                    class="mt-4 max-w-[18rem] text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  >
+                    <li
+                      id="bidder"
+                      class="w-full flex justify-between px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600"
+                    >
+                      <div id="bidder-name">
+                        <span id="bidder-count" class="me-1">1:</span>Profile
+                      </div>
+                      <div id="bidder-amount" class="text-gray-500">
+                        0000<span class="ml-1">coins</span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

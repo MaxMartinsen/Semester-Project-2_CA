@@ -1,1 +1,1 @@
-export { updateAvatar } from './updateAvatar.mjs';
+export { isUserAuthenticated } from './isUserAuthenticated.mjs';

@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeTagify();
   handleCreateListing();
   initializeSearch();
-
   // Settings modal observer setup
   const settingsModal = document.getElementById('settings-modal');
   if (settingsModal) {
