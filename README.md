@@ -8,7 +8,7 @@
 
 Welcome to Will bid Auction, an exciting new platform where the thrill of auctioning meets the convenience of online shopping. Whether you're a collector, a casual browser, or someone looking to find new homes for your treasures, our site offers a dynamic and user-friendly experience. Register to unlock a world of possibilities, where you can bid on a wide variety of items listed by other users and list your own items for auction. With an initial grant of 1000 credits upon joining, your journey into the world of online auctions begins on a promising note.
 
-## Our unique credit system enhances your experience use them to bid. Although browsing is open to everyone, registered users enjoy the exclusive privilege of bidding on and winning sought-after items. From rare collectibles to everyday goods, our platform caters to a diverse range of interests and needs. Join Will bid Auction today, and step into a marketplace that combines excitement, convenience, and opportunity, all in one place.
+Our unique credit system enhances your experience use them to bid. Although browsing is open to everyone, registered users enjoy the exclusive privilege of bidding on and winning sought-after items. From rare collectibles to everyday goods, our platform caters to a diverse range of interests and needs. Join Will bid Auction today, and step into a marketplace that combines excitement, convenience, and opportunity, all in one place.
 
 ### Slogan
 
@@ -71,15 +71,14 @@ This project was build using:
 
 ### Installing
 
-1. Clone the repo:
+- Clone the repo:
 
 ```bash
 git clone git@github.com:MaxMartinsen/Semester-Project-2_CA.git
 ```
 
-### Getting Started
-
 - Run `npm install` from inside the project folder to install dependencies.
+
 - Run `npm run dev` to start the development server.
 
 ## Contributing
