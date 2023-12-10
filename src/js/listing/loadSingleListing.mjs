@@ -244,10 +244,6 @@ function updateSingleListing(listing) {
   // Hide or show seller avatar and bid form based on whether it's the user's own listing
   sellerAvatarElement.style.visibility = isOwnListing ? 'hidden' : 'flex';
 
-  if (isAuthenticated && !isOwnListing) {
-    bidButton.addEventListener('click', () => handleBidSubmission(listing.id));
-  }
-
   if (isAuthenticated) {
     if (listing.bids && listing.bids.length > 0) {
       updateBidList(sortBidsDescending(listing.bids));
