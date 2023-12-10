@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -21,9 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WILL bid</title>
   </head>
-  <body class="bg-white font-poppins">
+  <body class="bg-white font-poppins h-full">
     <!-- Wrapper -->
-    <div class="wrapper">
+    <div class="min-h-full flex flex-col">
       <!-- Nav -->
       <nav class="bg-white md:px-4 fixed z-20 w-full border-b border-gray-300">
         <div
@@ -313,10 +313,17 @@
                     type="email"
                     name="email"
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="name@stud.noroff.no"
                     required
                   />
+                  <p
+                    id="email-error"
+                    class="hidden mt-2 text-sm font-medium text-red-600"
+                  >
+                    The email value must be a valid @stud.noroff.no email
+                    address.
+                  </p>
                 </div>
                 <div>
                   <label
@@ -329,9 +336,15 @@
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     required
                   />
+                  <p
+                    id="password-error"
+                    class="hidden mt-2 text-sm font-medium text-red-600"
+                  >
+                    The password value must be at least 8 characters.
+                  </p>
                 </div>
                 <button
                   type="submit"
@@ -341,11 +354,46 @@
                 </button>
                 <div class="text-sm font-medium text-gray-500">
                   Not registered?
-                  <a href="#" class="text-gray-900 hover:text-red-500"
+                  <a
+                    data-modal-hide="login-modal"
+                    data-modal-target="sign-up-modal"
+                    data-modal-toggle="sign-up-modal"
+                    href="#"
+                    class="text-gray-900 hover:text-red-500"
                     >Create account</a
                   >
                 </div>
               </form>
+            </div>
+            <!-- Login Modal error body -->
+            <div id="login-error-body" class="p-4 md:p-5 text-center hidden">
+              <svg
+                class="mx-auto mb-4 text-gray-400 w-12 h-12"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <h3 class="mb-5 text-lg font-normal text-gray-500">
+                When authorizing the user, the information provided is
+                incorrect, check your email and password should be correct.
+              </h3>
+              <button
+                id="close-login"
+                type="button"
+                data-modal-hide="login-modal"
+                class="close-modal text-black bg-gray-200 hover:bg-gray-300 hover:text-red-600 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -406,7 +454,7 @@
                     type="text"
                     name="nameSignUp"
                     id="name-sign-up"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="my_username"
                     required
                   />
@@ -427,10 +475,17 @@
                     type="email"
                     name="emailSignUp"
                     id="email-sign-up"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="name@stud.noroff.no"
                     required
                   />
+                  <p
+                    id="email-error"
+                    class="hidden mt-2 text-sm font-medium text-red-600"
+                  >
+                    The email value must be a valid @stud.noroff.no email
+                    address.
+                  </p>
                 </div>
                 <div>
                   <label
@@ -443,9 +498,15 @@
                     name="passwordSignUp"
                     id="password-sign-up"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     required
                   />
+                  <p
+                    id="password-error"
+                    class="hidden mt-2 text-sm font-medium text-red-600"
+                  >
+                    The password value must be at least 8 characters.
+                  </p>
                 </div>
                 <div>
                   <label
@@ -459,7 +520,7 @@
                     id="avatar-sign-up"
                     placeholder="https://jpg.com"
                     pattern="https://.*"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                   />
                 </div>
                 <button
@@ -501,9 +562,40 @@
                 data-modal-hide="sign-up-modal"
                 data-modal-target="login-modal"
                 data-modal-toggle="login-modal"
-                class="text-white bg-grey-600 hover:bg-grey-800 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2"
+                class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
               >
                 Yes, Login
+              </button>
+            </div>
+            <!-- Sign up Modal error body -->
+            <div id="sign-up-error-body" class="p-4 md:p-5 text-center hidden">
+              <svg
+                class="mx-auto mb-4 text-gray-400 w-12 h-12"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <h3 class="mb-5 text-lg font-normal text-gray-500">
+                When registering a user, the information provided is incorrect
+                or the user already exists, you can return to the main page and
+                try to register again or use the login.
+              </h3>
+              <button
+                id="close-sign-up"
+                type="button"
+                data-modal-hide="sign-up-modal"
+                class="close-modal text-black bg-gray-200 hover:bg-gray-300 hover:text-red-600 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Close
               </button>
             </div>
           </div>
@@ -576,7 +668,7 @@
                 <input
                   type="url"
                   id="settings-user-url"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                   placeholder="https://jpg.com"
                   pattern="https://.*"
                   required
@@ -660,7 +752,7 @@
                     type="text"
                     name="name"
                     id="listing-title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-600 focus:border-grey-600 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="Type product name"
                     required
                     minlength="3"
@@ -674,7 +766,7 @@
                   >
                   <select
                     id="listing-during"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     required
                   >
                     <option value="" disabled selected>During</option>
@@ -693,7 +785,7 @@
                   <input
                     type="url"
                     id="listing-image"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5"
                     placeholder="https://url.com/image.jpg"
                     required
                   />
@@ -702,7 +794,7 @@
                   <button
                     id="listing-image-add"
                     type="button"
-                    class="w-full p-2.5 text-sm font-medium text-center text-white bg-grey-700 rounded-lg hover:bg-grey-800 focus:ring-4 focus:outline-none focus:ring-grey-300"
+                    class="w-full p-2.5 text-sm font-medium text-center text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-grey-300"
                   >
                     Add
                   </button>
@@ -712,7 +804,7 @@
                     data-popover-target="popover-bottom"
                     data-popover-placement="bottom"
                     type="button"
-                    class="w-full text-white bg-grey-700 hover:bg-grey-800 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm p-2.5 text-center"
+                    class="w-full text-gray-900 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm p-2.5 text-center"
                   >
                     Media
                   </button>
@@ -742,7 +834,7 @@
                   <textarea
                     id="listing-description"
                     rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-grey-500 focus:border-grey-500"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-400 focus:border-gray-400"
                     placeholder="Write product description here"
                   ></textarea>
                 </div>
@@ -908,7 +1000,7 @@
               <button
                 data-modal-hide="sale-modal"
                 type="button"
-                class="text-black bg-gray-200 hover:text-red-500 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                class="text-black bg-gray-200 hover:text-red-600 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 I accept
               </button>
@@ -987,7 +1079,7 @@
               <button
                 data-modal-hide="info-modal"
                 type="button"
-                class="text-black bg-gray-200 hover:text-red-500 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                class="text-black bg-gray-200 hover:text-red-600 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 I accept
               </button>
@@ -996,7 +1088,7 @@
         </div>
       </div>
       <!-- Main -->
-      <main class="">
+      <main class="flex-auto">
         <section
           class="max-w-[1168px] sm:flex flex-wrap items-center justify-between mx-auto p-3"
         >
@@ -1307,7 +1399,7 @@
                       <input
                         type="number"
                         id="bid-input"
-                        class="block p-3 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-grey-500 focus:border-grey-500"
+                        class="block p-3 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-gray-400 focus:border-gray-400"
                         placeholder="Enter coins amount"
                         required
                       />
@@ -1343,7 +1435,18 @@
         </section>
       </main>
 
-      <footer></footer>
+      <footer class="bg-white border-t-4">
+        <div
+          class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
+        >
+          <span class="text-sm text-gray-500 sm:text-center"
+            >© 2023
+            <a href="/index.html" class="hover:text-red-500 font-medium"
+              >WILL bid ™</a
+            >. All Rights Reserved.
+          </span>
+        </div>
+      </footer>
     </div>
     <script type="module" src="/main.js"></script>
     <script src="https://unpkg.com/@yaireo/tagify"></script>
