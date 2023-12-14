@@ -1,6 +1,7 @@
 // Utils Module
 
 export { updateUserInfo } from './updateUserInfo.mjs';
+export { updateUserCredits } from './updateUserCredits.mjs';
 
 export { checkLoginState } from './checkLoginState.mjs';
 

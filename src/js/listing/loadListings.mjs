@@ -6,16 +6,16 @@ import { createTagSpan, formatTimeLeft } from '../utils/utils.mjs';
 let currentListings = [];
 
 export async function loadListings(searchTerm = '', isSearch = false) {
+  const titleH1Element = document.getElementById('h1-title');
+  const tabButton = document.getElementById('tab-button');
+
   try {
     let url = `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}?_active=true`;
-
     const limit = isSearch ? 60 : 12;
     url += `&sort=created&sortOrder=desc&limit=${limit}&offset=0`;
 
-    console.log('Fetching URL:', url); // Debugging
-
+    console.log('Fetching URL:', url);
     let listings = await get(url);
-
     console.log('Listings fetched:', listings.length); // Debugging
 
     if (isSearch && searchTerm) {
@@ -29,6 +29,18 @@ export async function loadListings(searchTerm = '', isSearch = false) {
               .includes(searchTerm.toLowerCase()))
       );
       console.log('Listings after filter:', listings.length); // Debugging
+
+      // Update the title with the number of search results
+      if (titleH1Element) {
+        titleH1Element.textContent = `Results (${listings.length})`;
+      }
+      // Add event listener for the Back button
+      if (tabButton) {
+        tabButton.textContent = 'Back';
+        tabButton.addEventListener('click', () => {
+          window.location.href = '/index.html';
+        });
+      }
     }
 
     const newListingIds = listings.map((listing) => listing.id);
@@ -53,10 +65,11 @@ function updateListingsDOM(listings) {
 }
 
 function arraysEqual(arr1, arr2) {
-  return (
-    arr1.length === arr2.length &&
-    arr1.every((value, index) => value === arr2[index])
-  );
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
 }
 
 function createListingCard(listing) {
