@@ -6,7 +6,11 @@ import {
   handleLogin,
   handleSignOut,
 } from './src/js/form/auth/auth.mjs';
-import { updateSettingsModal, checkLoginState } from './src/js/utils/utils.mjs';
+import {
+  updateSettingsModal,
+  checkLoginState,
+  updateUserCredits,
+} from './src/js/utils/utils.mjs';
 import { handleUpdateAvatar } from './src/js/form/profile/handleUpdateAvatar.mjs';
 import { loadListings, initializeSearch } from './src/js/listing/listing.mjs';
 import { initializeTagify } from './src/js/tagify/initializeTagify.mjs';
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleSignOut();
   handleUpdateAvatar();
   loadListings();
-  setInterval(loadListings, 30000);
+  updateUserCredits();
   initializeTagify();
   handleCreateListing();
   initializeSearch();

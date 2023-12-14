@@ -113,6 +113,8 @@ function updateSingleListing(listing) {
     'single-card-seller-avatar'
   );
   const bidContentElement = document.getElementById('single-card-bid-content');
+  const titleH1Element = document.getElementById('h1-title');
+  const tabButton = document.getElementById('tab-button');
   let bidListElement = document.getElementById('bid-list');
 
   // Ensure bid list element exists
@@ -120,6 +122,19 @@ function updateSingleListing(listing) {
     bidListElement = document.createElement('ul');
     bidListElement.id = 'bid-list';
     bidContentElement.appendChild(bidListElement);
+  }
+
+  // Update the h1 title to "Auction"
+  if (titleH1Element) {
+    titleH1Element.textContent = 'Auction';
+  }
+
+  // Add event listener for the Back button
+  if (tabButton) {
+    tabButton.textContent = 'Back';
+    tabButton.addEventListener('click', () => {
+      window.location.href = '/index.html';
+    });
   }
 
   // Check for required DOM elements
