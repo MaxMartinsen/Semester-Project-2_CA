@@ -133,7 +133,7 @@ function updateSingleListing(listing) {
   if (tabButton) {
     tabButton.textContent = 'Back';
     tabButton.addEventListener('click', () => {
-      window.location.href = 'Semester-Project-2_CA/';
+      window.location.href = '/Semester-Project-2_CA/';
     });
   }
 
