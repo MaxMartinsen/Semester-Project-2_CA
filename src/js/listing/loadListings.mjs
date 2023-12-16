@@ -14,9 +14,7 @@ export async function loadListings(searchTerm = '', isSearch = false) {
     const limit = isSearch ? 60 : 12;
     url += `&sort=created&sortOrder=desc&limit=${limit}&offset=0`;
 
-    console.log('Fetching URL:', url);
     let listings = await get(url);
-    console.log('Listings fetched:', listings.length); // Debugging
 
     if (isSearch && searchTerm) {
       listings = listings.filter(
@@ -28,7 +26,6 @@ export async function loadListings(searchTerm = '', isSearch = false) {
               .toLowerCase()
               .includes(searchTerm.toLowerCase()))
       );
-      console.log('Listings after filter:', listings.length); // Debugging
 
       // Update the title with the number of search results
       if (titleH1Element) {

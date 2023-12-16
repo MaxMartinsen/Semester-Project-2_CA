@@ -31,7 +31,6 @@ export function handleUpdateAvatar() {
 
         if (response && response.avatar) {
           updateAvatar(response.avatar);
-          console.log('Avatar updated:', response);
         } else {
           updateAvatar(defaultAvatarUrl);
         }
