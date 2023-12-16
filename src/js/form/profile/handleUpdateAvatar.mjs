@@ -19,6 +19,7 @@ export function handleUpdateAvatar() {
 
       if (!avatarUrl) {
         updateAvatar(defaultAvatarUrl);
+        window.location.href = '/Semester-Project-2_CA/';
         return;
       }
 
