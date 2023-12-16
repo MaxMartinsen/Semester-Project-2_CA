@@ -2,20 +2,22 @@ import { get } from '../request/request.mjs';
 import { API_BASE_URL, API_VERSION, PROFILES_ENDPOINT } from '../api/url.mjs';
 
 export async function updateUserCredits() {
-  try {
-    const userName = localStorage.getItem('name');
-    const accessToken = localStorage.getItem('accessToken'); // Retrieve the access token
+  const userName = localStorage.getItem('name');
+  const accessToken = localStorage.getItem('accessToken');
+  const userCreditsElement = document.getElementById('user-credits');
 
-    if (!userName) {
-      console.error('User name not found');
-      return;
+  if (!userName || !accessToken) {
+    if (userCreditsElement) {
+      userCreditsElement.textContent = '';
     }
+    return;
+  }
 
+  try {
     const url = `${API_BASE_URL}${API_VERSION}${PROFILES_ENDPOINT}/${userName}`;
-    const profile = await get(url, accessToken); // Pass the access token
+    const profile = await get(url, accessToken);
 
     if (profile && profile.credits !== undefined) {
-      const userCreditsElement = document.getElementById('user-credits');
       if (userCreditsElement) {
         userCreditsElement.textContent = ` ${profile.credits}`;
       }
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (userMenuButton) {
     userMenuButton.addEventListener('click', () => {
-      updateUserCredits(); // Fetch and update user credits
+      updateUserCredits();
       userDropdown.classList.toggle('hidden');
     });
   }

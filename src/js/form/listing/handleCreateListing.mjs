@@ -107,6 +107,7 @@ export function handleCreateListing() {
           submitButton.classList.remove('hidden');
           clearFormFields();
           document.querySelector('[data-modal-hide="listing-modal"]').click();
+          window.location.href = '/Semester-Project-2_CA/';
         }, 1500);
       }, 2000);
     } catch (error) {
