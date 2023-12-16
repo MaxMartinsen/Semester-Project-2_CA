@@ -8,7 +8,7 @@ import { updateAvatar } from '../../utils/utils.mjs';
 
 export function handleUpdateAvatar() {
   const settingsAcceptButton = document.getElementById('settings-user-accept');
-  const defaultAvatarUrl = '/user.svg';
+  const defaultAvatarUrl = '';
 
   if (settingsAcceptButton) {
     settingsAcceptButton.addEventListener('click', async () => {

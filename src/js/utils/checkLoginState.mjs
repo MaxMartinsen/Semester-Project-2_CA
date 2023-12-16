@@ -19,7 +19,7 @@ export function checkLoginState() {
       const name = localStorage.getItem('name');
       userAvatar.src = avatar || '/user.svg';
 
-      userAvatar.alt = name || 'User';
+      userAvatar.alt = name || 'user avatar';
     }
 
     updateUserInfo();
