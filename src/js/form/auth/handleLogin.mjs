@@ -53,7 +53,7 @@ export function handleLogin() {
           `${API_BASE_URL}${API_VERSION}${LOGIN_ENDPOINT}`,
           { email, password }
         );
-
+        window.location.href = '/Semester-Project-2_CA/';
         console.log('Response from API:', response);
 
         if (response && response.accessToken) {

@@ -24,5 +24,6 @@ export function handleSignOut() {
     if (userMenuButton) {
       userMenuButton.click();
     }
+    window.location.href = '/Semester-Project-2_CA/';
   });
 }
