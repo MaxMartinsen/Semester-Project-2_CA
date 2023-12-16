@@ -87,12 +87,11 @@ export function handleCreateListing() {
     };
 
     try {
-      const response = await post(
+      await post(
         `${API_BASE_URL}${API_VERSION}${LISTINGS_ENDPOINT}`,
         data,
         accessToken
       );
-      console.log('Listing created:', response);
 
       // Change to success button and close modal after a delay
       setTimeout(() => {

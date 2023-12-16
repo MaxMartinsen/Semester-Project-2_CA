@@ -54,7 +54,6 @@ export function handleLogin() {
           { email, password }
         );
         window.location.href = '/Semester-Project-2_CA/';
-        console.log('Response from API:', response);
 
         if (response && response.accessToken) {
           localStorage.setItem('credits', response.credits);
@@ -78,8 +77,6 @@ export function handleLogin() {
               userAvatar.alt = response.name;
             }
           }
-
-          console.log('Login response stored in localStorage');
         } else {
           console.error('No access token in response');
         }

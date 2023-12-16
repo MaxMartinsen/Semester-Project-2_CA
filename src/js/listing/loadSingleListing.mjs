@@ -248,6 +248,7 @@ function updateSingleListing(listing) {
     // Hide both bid form and bid list for non-authenticated users
     if (bidFormElement) bidFormElement.style.display = 'none';
     bidListElement.style.display = 'none';
+    sellerAvatarElement.style.display = 'none';
   }
 
   if (isAuthenticated && listing.seller) {
