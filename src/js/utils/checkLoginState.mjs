@@ -17,7 +17,7 @@ export function checkLoginState() {
     if (userAvatar) {
       const avatar = localStorage.getItem('avatar');
       const name = localStorage.getItem('name');
-      userAvatar.src = avatar || '/user.svg';
+      userAvatar.src = avatar || '/Semester-Project-2_CA/user.svg';
 
       userAvatar.alt = name || 'user avatar';
     }
