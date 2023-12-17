@@ -25,12 +25,12 @@
     <!-- Wrapper -->
     <div class="min-h-full flex flex-col">
       <!-- Nav -->
-      <nav class="bg-white md:px-4 fixed z-20 w-full border-b border-gray-300">
+      <nav class="bg-white lg:px-4 fixed z-20 w-full border-b border-gray-300">
         <div
-          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3"
+          class="max-w-screen-xl flex flex-wrap items-center justify-around sm:justify-between mx-auto p-3"
         >
           <!-- Brand logo -->
-          <div class="md:order-1">
+          <div class="lg:order-1">
             <a
               href="/Semester-Project-2_CA/"
               class="flex items-center space-x-3 rtl:space-x-reverse"
@@ -40,7 +40,7 @@
           </div>
           <!-- Nav buttons -->
           <div
-            class="flex items-center space-x-3 md:space-x-0 rtl:space-x-reverse md:order-4"
+            class="flex my-3 sm:my-0 items-center space-x-3 lg:space-x-0 rtl:space-x-reverse lg:order-4"
           >
             <!-- Search button -->
             <button
@@ -48,7 +48,7 @@
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
               aria-expanded="false"
-              class="md:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5"
+              class="lg:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5"
             >
               <svg
                 class="w-5 h-5"
@@ -71,7 +71,7 @@
             <button
               data-collapse-toggle="navbar-nav"
               type="button"
-              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               aria-controls="navbar-nav"
               aria-expanded="false"
             >
@@ -100,7 +100,7 @@
                 type="button"
                 data-modal-target="login-modal"
                 data-modal-toggle="login-modal"
-                class="py-2.5 px-5 text-lg font-semibold text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-500"
+                class="px-2 py-1 sm:px-5 sm:py-2.5 text-lg font-semibold text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-500"
               >
                 Login
               </button>
@@ -111,7 +111,7 @@
                 type="button"
                 data-modal-target="sign-up-modal"
                 data-modal-toggle="sign-up-modal"
-                class="text-white bg-red-400 hover:bg-red-500 font-semibold rounded-lg text-lg px-5 py-2.5"
+                class="text-white bg-red-400 hover:bg-red-500 font-semibold rounded-lg text-lg px-2 py-1 sm:px-5 sm:py-2.5"
               >
                 Sign up
               </button>
@@ -119,7 +119,7 @@
             <!-- User button -->
             <button
               type="button"
-              class="hidden text-sm bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
+              class="hidden text-sm bg-white rounded-full lg:me-0 focus:ring-4 focus:ring-gray-300"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
@@ -135,7 +135,7 @@
             </button>
             <!-- Dropdown menu -->
             <div
-              class="font-medium z-50 w-3/6 md:w-2/6 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
+              class="font-medium z-50 w-3/6 lg:w-2/6 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
               id="user-dropdown"
             >
               <div class="px-4 py-3">
@@ -188,10 +188,10 @@
           </div>
           <!-- Nav search -->
           <div
-            class="hidden w-full md:block md:w-auto md:order-2"
+            class="hidden w-full lg:block lg:w-auto lg:order-2"
             id="navbar-search"
           >
-            <div class="relative mt-4 md:mt-0">
+            <div class="relative mt-4 lg:mt-0">
               <!-- Search button with SVG icon -->
               <button
                 id="navbar-search-button"
@@ -226,18 +226,18 @@
 
           <!-- Nav menu -->
           <div
-            class="hidden w-full md:block md:w-auto md:order-3"
+            class="hidden w-full lg:block lg:w-auto lg:order-3"
             id="navbar-nav"
           >
             <ul
-              class="font-semibold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white"
+              class="font-semibold flex flex-col p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-4 rtl:space-x-reverse lg:mt-0 lg:border-0 lg:bg-white"
             >
               <li>
                 <a
                   data-modal-target="sale-modal"
                   data-modal-toggle="sale-modal"
                   href="#"
-                  class="flex items-center justify-center gap-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                  class="flex items-center justify-center gap-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-red-500 lg:p-0"
                 >
                   <span class="icon-sale text-3xl"></span>
                   <span class="text-2xl">Sale</span>
@@ -245,14 +245,14 @@
               </li>
 
               <!-- Separator -->
-              <li class="hidden md:block bg-gray-300 w-px h-8 mx-2"></li>
+              <li class="hidden lg:block bg-gray-300 w-px h-8 mx-2"></li>
 
               <li>
                 <a
                   data-modal-target="info-modal"
                   data-modal-toggle="info-modal"
                   href="#"
-                  class="flex items-center justify-center gap-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                  class="flex items-center justify-center gap-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-red-500 lg:p-0"
                 >
                   <span class="icon-info text-3xl"></span>
                   <span class="text-2xl">Info</span>
